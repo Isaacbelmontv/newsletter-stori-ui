@@ -4,7 +4,7 @@ import { UnsubscribeComponent } from './presenter/pages/unsubscribe/unsubscribe.
 import { NotfoundComponent } from './presenter/pages/notfound/notfound.component';
 
 export const routes: Routes = [
-  { path: 'subscribe', component: SubscribeComponent },
-  { path: 'unsubscribe/:id', component: UnsubscribeComponent },
+  { path: 'subscribe/:id', component: SubscribeComponent },
+  { path: 'unsubscribe/:email', component: UnsubscribeComponent },
   { path: '**', component: NotfoundComponent },
 ];

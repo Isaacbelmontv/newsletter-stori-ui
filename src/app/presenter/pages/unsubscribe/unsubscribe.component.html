@@ -1,1 +1,21 @@
-<p>unsubscribe works!</p>
+<div>
+  <h2>
+    Selecciona qué newsletters deseas dejar de recibir y personaliza tu bandeja
+    de entrada
+  </h2>
+
+  <div class="header-list">
+    <p>Newsletter</p>
+    <p>Activo</p>
+  </div>
+  <mat-selection-list class="list">
+    @for (subscription of subscriptions; track subscription) {
+    <mat-list-option
+      [selected]="subscription.active"
+      (click)="subscriptionSelected(subscription)"
+      >{{ subscription?.id }} -
+      {{ subscription?.newsletters?.title }}</mat-list-option
+    >
+    }
+  </mat-selection-list>
+</div>
