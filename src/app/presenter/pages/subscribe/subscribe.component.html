@@ -1,0 +1,29 @@
+<div class="container">
+  <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>¡Suscríbete a nuestro boletín!</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Correo electrónico"
+          />
+
+          @if (f['email'].errors && f['email'].errors['required']) {
+          <mat-error>El correo electrónico es obligatorio</mat-error>}
+          @if(f['email'].errors && f['email'].errors['email']) {
+          <mat-error>El correo electrónico no es válido</mat-error>
+          }
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">
+          Suscribirse
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
