@@ -2,11 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
-## Run local
+## Run docker
 
-Run `npm install`
+Run `docker compose build`
 
-Run `ng serve`
+Run `docker compose up newsletter-stori-ui`
 
 ## Routes
 
@@ -29,6 +29,12 @@ Example:
 ![Unsubscribe](assets/localhost_4200_unsubscribe.png)
 
 </details>
+
+## Run local
+
+Run `npm install`
+
+Run `ng serve`
 
 ## Development server
 

@@ -1,0 +1,11 @@
+server {
+  listen       4200;
+
+  root   /usr/share/nginx/html/newsletter-stori-ui;
+
+  location / {
+    index index.html;
+    try_files $uri $uri/ /index.html;
+    expires -1;
+  }
+}
