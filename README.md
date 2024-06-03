@@ -30,11 +30,9 @@ Example:
 
 </details>
 
-## Run local
+## TODO LIST
 
-Run `npm install`
-
-Run `ng serve`
+- Add auth & guards.
 
 ## Development server
 
