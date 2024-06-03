@@ -2,6 +2,40 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
+## Run docker
+
+Run `docker compose build`
+
+Run `docker compose up newsletter-stori-ui`
+
+## Routes
+
+<details>
+  <summary>Click me</summary>
+  
+`/singup`
+![Signup Example](assets/localhost_4200_singup.png)
+
+`/newsletters`
+Example:
+![Newsletters Example](assets/localhost_4200_newsletters.png)
+
+`/subscribe/:newsletterId`
+Example:
+![Subscribe](assets/localhost_4200_subscribe_1.png)
+
+`/unsubscribe/:subscriptionEmail`
+Example:
+![Unsubscribe](assets/localhost_4200_unsubscribe.png)
+
+</details>
+
+## Run local
+
+Run `npm install`
+
+Run `ng serve`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
