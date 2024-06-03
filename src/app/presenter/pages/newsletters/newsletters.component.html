@@ -1,0 +1,112 @@
+<h2 class="title">Da de alta un nuevo newsletter</h2>
+
+<form (ngSubmit)="submitForm()" [formGroup]="newsletterForm" class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Titulo</mat-label>
+    <input matInput formControlName="title" placeholder="titulo" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Contenido</mat-label>
+    <textarea
+      matInput
+      formControlName="content"
+      placeholder="Puedes ingresar un html"
+    ></textarea>
+  </mat-form-field>
+
+  <input type="file" (change)="onFileSelected($event)" class="title" />
+
+  <button mat-raised-button color="accent" type="submit">Enviar</button>
+</form>
+
+<h2 class="title">Registros de newsletters</h2>
+
+<table
+  mat-table
+  [dataSource]="newsletters"
+  multiTemplateDataRows
+  matSort
+  class="mat-elevation-z8"
+>
+  @for (column of columnsToDisplay; track column) {
+  <ng-container matColumnDef="{{ column }}">
+    <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+    <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+  </ng-container>
+  }
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        aria-label="expand row"
+        (click)="
+          expandedElement = expandedElement === element ? null : element;
+          $event.stopPropagation()
+        "
+      >
+        @if (expandedElement === element) {
+        <mat-icon>keyboard_arrow_up</mat-icon>
+        } @else {
+        <mat-icon>keyboard_arrow_down</mat-icon>
+        }
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [attr.colspan]="columnsToDisplayWithExpand.length"
+    >
+      <div
+        class="newsletter-element-detail"
+        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+      >
+        <p>Selecciona los destinarios</p>
+
+        <mat-selection-list class="list">
+          @for (subscription of subscriptions; track subscription) {
+          <mat-list-option
+            [selected]="subscription.active"
+            (click)="toggleSubscription(subscription)"
+            >{{ subscription?.id }} - {{ subscription?.email }}</mat-list-option
+          >
+          }
+        </mat-selection-list>
+
+        <button
+          class="send-button"
+          mat-raised-button
+          color="accent"
+          type="submit"
+          (click)="sendNewsletters(element.id)"
+        >
+          Enviar
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr
+    mat-row
+    *matRowDef="let element; columns: columnsToDisplayWithExpand"
+    class="newsletter-element-row"
+    [class.newsletter-expanded-row]="expandedElement === element"
+    (click)="expandedElement = expandedElement === element ? null : element"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: ['expandedDetail']"
+    class="newsletter-detail-row"
+  ></tr>
+</table>
+
+<mat-paginator
+  class="paginator"
+  [pageSizeOptions]="[5, 10]"
+  aria-label="Selecciona la pagina"
+></mat-paginator>

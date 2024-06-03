@@ -41,9 +41,9 @@ export class SubscriptionsService {
             email: item.email,
             active: item.active,
             newsletters: {
-              id: item.newsletters.id,
-              title: item.newsletters.title,
-              content: item.newsletters.content,
+              id: item?.newsletters?.id,
+              title: item?.newsletters?.title,
+              content: item?.newsletters?.content,
             },
           } as INewsletterSubscription;
         })
@@ -61,6 +61,20 @@ export class SubscriptionsService {
           message: response.message,
         };
       })
+    );
+  }
+
+  getActiveSubscribers(): Observable<INewsletterSubscription[]> {
+    return this.http.get<any>(`${this.apiUrl}/subscribe`).pipe(
+      map((response: any) =>
+        response.map((item: INewsletterSubscription) => {
+          return {
+            id: item.id,
+            email: item.email,
+            active: false,
+          } as INewsletterSubscription;
+        })
+      )
     );
   }
 }
