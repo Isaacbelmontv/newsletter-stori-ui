@@ -5,13 +5,9 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item [routerLink]="['/newsletters']">
       <mat-icon>home</mat-icon>
-      <span>Home</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>info</mat-icon>
-      <span>About</span>
+      <span>Newsletters</span>
     </button>
   </mat-menu>
 </mat-toolbar>
